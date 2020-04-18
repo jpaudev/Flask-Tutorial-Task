@@ -5,12 +5,19 @@
         <title>Welcome to Flask!</title>
     {% endif %}
     <body>
-        <div>Flask: <a href="/index">Home</a></div>
-        {% block mycontent %}
-            <h1>Hi, {{ user.username }}! You are already in chapter 2!</h1>
-            {% for post in posts %}
-                <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
+        <div>Flask: 
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('login') }}">Login</a>
+        </div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
             {% endfor %}
-        {% endblock%}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
     </body>
 </html>
