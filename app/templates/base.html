@@ -1,0 +1,16 @@
+<html>
+    {% if title %}
+        <title>{{ title }} - Flask</title>
+    {% else %}
+        <title>Welcome to Flask!</title>
+    {% endif %}
+    <body>
+        <div>Flask: <a href="/index">Home</a></div>
+        {% block mycontent %}
+            <h1>Hi, {{ user.username }}! You are already in chapter 2!</h1>
+            {% for post in posts %}
+                <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
+            {% endfor %}
+        {% endblock%}
+    </body>
+</html>
